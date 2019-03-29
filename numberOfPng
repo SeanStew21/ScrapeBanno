@@ -1,0 +1,45 @@
+echo "# ScrapeBanno" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/SeanStew21/ScrapeBanno.git
+git push -u origin master
+
+const request = require('request');
+const cheerio = require('cheerio');
+
+request('https://banno.com/', (error, response, html) => {
+    if (!error && response.statusCode == 200) {
+        const $ = cheerio.load(html)
+
+        // Instances of 'financial institution
+        $('.column').each((i, el) => {
+            const financial = $(el).find('p').text()
+            console.log(financial);
+         });
+    }
+});
+// second instance of financial institution
+request('https://banno.com/who-is-banno/', (error, response, html) => {
+    if (!error && response.statusCode == 200) {
+        const $ = cheerio.load(html)
+
+        // Instance of 'financial institution
+        $('.well').each((i, el) => {
+            const financial2 = $(el).find('p').text()
+            console.log(financial2);
+         });
+    }
+});
+// third instance of financial institution
+request('https://banno.com/who-is-banno/', (error, response, html) => {
+    if (!error && response.statusCode == 200) {
+        const $ = cheerio.load(html)
+
+        // Instance of 'financial institution
+        $('.column').each((i, el) => {
+            const financial3 = $(el).find('p').text()
+            console.log(financial3);
+         });
+    }
+});
